@@ -25,6 +25,18 @@ app.use('/users', usersRouter);
 // API ROUTES
 const addressRoutes = require('./routes/address.routes');
 app.use('/api/v1/addresses',addressRoutes);
+// const guardianRoutes = require('./routes/guardian.routes');
+// app.use('/api/v1/guardians',guardianRoutes);
+const personRoutes = require('./routes/person.routes');
+app.use('/api/v1/persons',personRoutes);
+const leagueRoutes = require('./routes/league.routes');
+app.use('/api/v1/leagues',leagueRoutes)
+const playerRoutes = require('./routes/player.routes');
+app.use('/api/v1/players',playerRoutes);
+const staffRoutes = require('./routes/staff.routes');
+app.use('/api/v1/staff',staffRoutes);
+const teamRoutes = require('./routes/team.routes');
+app.use('/api/v1/teams',teamRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

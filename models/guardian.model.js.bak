@@ -1,0 +1,61 @@
+'use strict'
+
+var dbConn = require('../config/db_config');
+
+var Guardian = function (guardian) {
+    this.personalInfo = guardian.personalInfo;
+};
+
+Guardian.create = function (newGuardian, result) {
+    dbConn.query("INSERT INTO guardians set ?", newGuardian, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            console.log(res.insertId);
+            result(null, res.insertId);
+        }
+    });
+};
+Guardian.findById = function (id, result) {
+    dbConn.query("Select * from guardians where id = ? ", id, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+};
+Guardian.findAll = function (result) {
+    dbConn.query("Select * from guardians", function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('guardians : ', res);
+            result(null, res);
+        }
+    });
+};
+Guardian.update = function (id, guardian, result) {
+    dbConn.query("UPDATE guardians SET personalInfo=? WHERE id = ?", [guardian.personalInfo, id], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+Guardian.delete = function (id, result) {
+    dbConn.query("DELETE FROM guardians WHERE id = ?", [id], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+module.exports = Guardian;

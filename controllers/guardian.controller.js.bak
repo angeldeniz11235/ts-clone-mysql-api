@@ -1,0 +1,65 @@
+'use strict';
+const Guardian = require('../models/guardian.model.js.bak');
+exports.findAll = function (req, res) {
+    Guardian.findAll(function (err, guardian) {
+        console.log('controller')
+        if (err)
+            res.send(err);
+        console.log('res', guardian);
+        res.send(guardian);
+    });
+};
+exports.create = function (req, res) {
+    const new_guardian = new Guardian(req.body);
+    //handles null error
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+        res.status(400).send({
+            error: true,
+            message: 'Please provide all required field'
+        });
+    } else {
+        Guardian.create(new_guardian, function (err, guardian) {
+            if (err)
+                res.send(err);
+            res.json({
+                error: false,
+                message: "Guardian added successfully!",
+                data: guardian
+            });
+        });
+    }
+};
+exports.findById = function (req, res) {
+    Guardian.findById(req.params.id, function (err, guardian) {
+        if (err)
+            res.send(err);
+        res.json(guardian);
+    });
+};
+exports.update = function (req, res) {
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+        res.status(400).send({
+            error: true,
+            message: 'Please provide all required fields'
+        });
+    } else {
+        Guardian.update(req.params.id, new Guardian(req.body), function (err, guardian) {
+            if (err)
+                res.send(err);
+            res.json({
+                error: false,
+                message: 'Guardian successfully updated'
+            });
+        });
+    }
+};
+exports.delete = function (req, res) {
+    Guardian.delete(req.params.id, function (err, guardian) {
+        if (err)
+            res.send(err);
+        res.json({
+            error: false,
+            message: 'Guardian successfully deleted'
+        });
+    });
+};

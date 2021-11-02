@@ -1,0 +1,2 @@
+//reset autoincrement to 0 in mysql table
+DBCC CHECKIDENT (mytable, RESEED, 0)
