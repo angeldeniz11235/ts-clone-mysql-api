@@ -9,8 +9,8 @@ var Team = function (team) {
     this.mascot = team.mascot;
 };
 
-Team.create = function (newPerson, result) {
-    dbConn.query("INSERT INTO teams set ?", newPerson, function (err, res) {
+Team.create = function (newTeam, result) {
+    dbConn.query("INSERT INTO teams set ?", newTeam, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);

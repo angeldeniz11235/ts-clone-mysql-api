@@ -10,7 +10,7 @@ exports.findAll = function (req, res) {
     });
 };
 exports.create = function (req, res) {
-    const new_person = new Team(req.body);
+    const new_team = new Team(req.body);
     //handles null error
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({
@@ -18,7 +18,7 @@ exports.create = function (req, res) {
             message: 'Please provide all required fields'
         });
     } else {
-        Team.create(new_person, function (err, team) {
+        Team.create(new_team, function (err, team) {
             if (err)
                 res.send(err);
             res.json({

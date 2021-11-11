@@ -1,2 +1,5 @@
 //reset autoincrement to 0 in mysql table
 DBCC CHECKIDENT (mytable, RESEED, 0)
+
+//database schema 
+http://localhost:8080/?server=192.168.29.192&username=root&db=tsClone&schema=addresses%3A14.8611x9.2361_players%3A32.5694x29.375_persons%3A7.2222x23.8194_leagues%3A-0.5556x20.7639_staff%3A3.3333x36.5972_teams%3A19.1667x31.3889

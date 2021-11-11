@@ -1,14 +1,42 @@
 'use strict';
 const mysql = require('mysql');
-//local mysql db connection
-const dbConn = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'r0932urwpour02',
-  database : 'tsClone'
-});
-dbConn.connect(function(err) {
-  if (err) throw err;
-  console.log("Database Connected!");
-});
+
+var dbConn = {};
+var user = 'root';
+var password = 'r0932urwpour02';
+var database = 'tsClone'
+
+function connectToDB() {
+  var Host = "";
+  switch (process.env.NODE_ENV) {
+    case 'production':
+          console.log('Connecting to production database: ' + process.env.MYSQL_DB_ADDRESS);
+      Host = process.env.MYSQL_DB_ADDRESS;
+      break;
+    case 'development':
+      console.log('Connecting to development database at localhost');
+      Host = 'localhost';
+      break;
+
+    default:
+      console.log('MYSQL_DB_ADDRESS is not set...');
+      break;
+  }
+  dbConn = mysql.createConnection({
+    host: Host,
+    user: user,
+    password: password,
+    database: database
+  });
+  dbConn.connect(function (err) {
+    if (err) {
+      console.log('Error connecting to Db\n' + err);
+      return;
+    }
+    console.log(`Connection established to ${Host}`);
+  });
+}
+
+
+connectToDB();
 module.exports = dbConn;
