@@ -5,6 +5,8 @@ const teamController = require('../controllers/team.controller');
 router.get('/', teamController.findAll);
 // Create a new team
 router.post('/', teamController.create);
+// Retreive all players of a team using teamId as parameter
+router.get('/get-all-players/:team_id', teamController.findPlayers);
 // Retrieve a single team with id
 router.get('/:id', teamController.findById);
 // Update a team with id

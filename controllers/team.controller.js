@@ -9,6 +9,16 @@ exports.findAll = function (req, res) {
         res.send(team);
     });
 };
+
+//find all players in a team
+exports.findPlayers = function (req, res) {
+    Team.findPlayers(req.params.team_id, function (err, team) {
+        if (err)
+            res.send(err);
+        res.send(team);
+    });
+};
+
 exports.create = function (req, res) {
     const new_team = new Team(req.body);
     //handles null error
@@ -18,13 +28,13 @@ exports.create = function (req, res) {
             message: 'Please provide all required fields'
         });
     } else {
-        Team.create(new_team, function (err, team) {
+        Team.create(new_team, function (err, teamID) {
             if (err)
                 res.send(err);
             res.json({
                 error: false,
                 message: "Team added successfully!",
-                data: team
+                teamID: teamID
             });
         });
     }

@@ -61,4 +61,18 @@ Team.delete = function (id, result) {
         }
     });
 };
+
+//find all players on a team
+Team.findPlayers = function (id, result) {
+    dbConn.query("Select * from players WHERE players.team = ?", [id], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('players : ', res);
+            result(null, res);
+        }
+    });
+};
+
 module.exports = Team;
