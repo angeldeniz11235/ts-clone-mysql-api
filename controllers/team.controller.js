@@ -73,3 +73,10 @@ exports.delete = function (req, res) {
         });
     });
 };
+ exports.findPlayersPesonalInfo = function (req, res) {
+    Team.findPlayersPesonalInfo(req.params.team_id, function (err, team) {
+        if (err)
+            res.send(err);
+        res.json(team);
+    });
+}

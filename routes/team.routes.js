@@ -7,6 +7,8 @@ router.get('/', teamController.findAll);
 router.post('/', teamController.create);
 // Retreive all players of a team using teamId as parameter
 router.get('/get-all-players/:team_id', teamController.findPlayers);
+// Retreive all players personal info of a team using teamId as parameter
+router.get('/get-all-players-info/:team_id', teamController.findPlayersPesonalInfo);
 // Retrieve a single team with id
 router.get('/:id', teamController.findById);
 // Update a team with id

@@ -6,6 +6,7 @@ var League = function (league) {
     this.name = league.name;
     this.hqAddress = league.hqAddress;
     this.foundationDate = league.foundationDate;
+    this.sport = league.sport;
 };
 
 League.create = function (newLeague, result) {
@@ -41,7 +42,7 @@ League.findAll = function (result) {
     });
 };
 League.update = function (id, league, result) {
-    dbConn.query("UPDATE leagues SET name=?,hqAddress=?,foundationDate=? WHERE id = ?", [league.name, league.hqAddress, league.foundationDate, id], function (err, res) {
+    dbConn.query("UPDATE leagues SET name=?,hqAddress=?,foundationDate=?, sport=?, WHERE id = ?", [league.name, league.hqAddress, league.foundationDate, league.sport, id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

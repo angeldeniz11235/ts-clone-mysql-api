@@ -75,4 +75,18 @@ Team.findPlayers = function (id, result) {
     });
 };
 
+//find player's personal info on a team using team id
+Team.findPlayersPesonalInfo = function (id, result) {
+    dbConn.query("select persons.* from (select p.* from teams t join players p on t.id = p.team where t.id = ?) r join persons on r.personalInfo = persons.ID",
+     [id], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('players : ', res);
+            result(null, res);
+        }
+    });
+};
+
 module.exports = Team;
