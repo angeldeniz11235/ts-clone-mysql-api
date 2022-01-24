@@ -10,8 +10,13 @@ function connectToDB() {
   var Host = "";
   switch (process.env.NODE_ENV) {
     case 'production':
-          console.log('Connecting to production database: ' + process.env.MYSQL_DB_ADDRESS);
-      Host = process.env.MYSQL_DB_ADDRESS;
+      if (process.env.MYSQL_DB_ADDRESS !== undefined) {
+        Host = process.env.MYSQL_DB_ADDRESS;
+        console.log('Connecting to production database: ' + process.env.MYSQL_DB_ADDRESS);
+      }
+      else{
+        Host = 'http:www.angeld.xyz';
+      }
       break;
     case 'development':
       console.log('Connecting to development database at localhost');
