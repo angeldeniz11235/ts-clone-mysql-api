@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./bin/www",
-    "prod": "NODE_ENV=production node ./bin/www"
+    "prod" : "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,8 +13,7 @@
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
     "morgan": "~1.9.1",
-    "mysql": "^2.18.1",
-    "pug": "^3.0.2"
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"

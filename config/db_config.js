@@ -20,7 +20,7 @@ function connectToDB() {
       break;
     case 'development':
       console.log('Connecting to development database at localhost');
-      Host = "localhost";
+      Host = 'localhost';
       break;
 
     default:
