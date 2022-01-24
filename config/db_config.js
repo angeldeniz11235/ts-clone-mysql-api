@@ -15,7 +15,7 @@ function connectToDB() {
         console.log('Connecting to production database: ' + process.env.MYSQL_DB_ADDRESS);
       }
       else{
-        Host = 'http:www.angeld.xyz';
+        Host = '107.152.35.192';
       }
       break;
     case 'development':
